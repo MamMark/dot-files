@@ -1,7 +1,15 @@
 # .bashrc
-# Ver 4.3 20180121 zot u1404 + vm
+# Ver 5.0 20190424 zot u1804 + vm
 # echo "*** bashrc ***"
 
+# If not running interactively, don't do anything
+# If we don't bail if non-interactive, then vagrant share
+# mounts following creation (vagrant halt; vagrant up)
+# fail.
+case $- in
+    *i*) ;;
+      *) return;;
+esac
 
 if [ ! -e /vagrant ]; then
   # delete the following line, and edit EXPECTED_USER
