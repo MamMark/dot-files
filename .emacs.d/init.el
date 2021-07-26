@@ -1,28 +1,4 @@
-;;;
-;;; Ver 4.9 20171228 u1404 zot/rubr + vm
-;;;
-;;; 4.1    add various things from gh:marshroyer/emacs-dotfiles
-;;; 4.2    move to init.el
-;;;        add docs about bookmarking
-;;;        add .emacs.d/.init.local.el
-;;;        move .emacs_lib -> .emacs.d/lib
-;;;        support for position with large displays and small.
-;;; 4.3    update various org things, todo keywords
-;;;        add gitflow
-;;;        set magit-repository-directories
-;;;        add ido-enter-magit-status to ido-setup-hook
-;;;        add tramp, ido-remove-tramp-from-cache
-;;; 4.4    add ediff customization
-;;; 4.5    add show-trailing-whitespace and hooks
-;;;        default face white on black
-;;; 4.6    get c indenting to work again (nesc doesn't work anymore)
-;;;        default face black on white.
-;;; 4.7    nuke banish
-;;; 4.8    add realgud
-;;; 4.9    pdb mode hook to do no-trailing-whitespace
-;;;
-;;; x.x    add python Emacs IDE
-;;;
+;;; Ver 5.0 20210725 u1804 zot/rubr + vm
 
 ;; (if nil
 ;; (cond
@@ -492,11 +468,20 @@
 ;;; (find-file-read-only "~/.ToDo")
 
 (custom-set-faces
- '(default ((t (:inherit nil :stipple nil :background "black" :foreground "white" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 120 :width normal :foundry "unknown" :family "Ubuntu Mono")))))
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(default ((t (:inherit nil :stipple nil :background "black" :foreground "white" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 98 :width normal :foundry "1ASC" :family "Liberation Mono")))))
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(display-time-mode t)
  '(magit-commit-arguments nil)
- '(magit-log-arguments (quote ("--graph" "--decorate" "-n256"))))
+ '(magit-log-arguments (quote ("--graph" "--decorate" "-n256")))
+ '(save-place t)
+ '(show-paren-mode t)
+ '(size-indication-mode t)
+ '(tool-bar-mode nil))
