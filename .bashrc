@@ -1,5 +1,5 @@
 # .bashrc
-# Ver 5.0 20190424 zot u1804 + vm
+# Ver 5.1 20210725 zot u1804 + vm
 # echo "*** bashrc ***"
 
 # If not running interactively, don't do anything
@@ -12,8 +12,10 @@ case $- in
 esac
 
 if [ ! -e /vagrant ]; then
-  # delete the following line, and edit EXPECTED_USER
+  # comment out the following line, and edit EXPECTED_USER
   echo "*** you need to edit EXPECTED_USER, be yourself."
+  # uncomment the : line to avoid errors.
+  # :
 fi
 
 EXPECTED_USER=xyz
