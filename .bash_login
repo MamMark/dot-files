@@ -1,6 +1,5 @@
 # .bash_login
-# Ver 4.1 20161125 zot u1404 + vm
-#    add merge Xresources on the way in
+# Ver 5.0 20210725 zot u1804 + vm
 # echo "*** bash_login ***"
 
 export USERNAME=""
@@ -21,7 +20,7 @@ if [ "z$OSNAME" = "zDarwin" ] ; then
   if [ "z$TERM" = "zlinux" -o "z$TERM" = "zxterm-color" -o "z$TERM" = "zxterm" ] ;
   then export TERM=vt100 ; fi
 else
-  if [[ -v DISPLAY ]]; then xrdb -merge ~/.Xresources; fi
+  if [[ -v DISPLAY && -f ~/.Xresources ]]; then xrdb -merge ~/.Xresources; fi
   if [ -z $VM ] ; then
     # Linux, ... , what else?
     stty erase ^\? kill ^x intr ^c tostop werase '^W' cr0 rprnt '^R' flush '^O'
