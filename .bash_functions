@@ -1,7 +1,6 @@
 # .bash_functions
-# ver 4.2 20190417 zot u1804
-#   add name function for terminal names
-
+# ver 5.0 20210803 zot u1804
+#   add loctun for localhost tunnel (Jupyter)
 
 # set the name of a gnome-terminal
 function name () {
@@ -26,9 +25,40 @@ function shssh () {
 }
 
 
-function set-d () {
-    /bin/rm -f ~/.bin/mspgcc
+# loctun - setup or kill a localhost tunnel
+# $1 - hostname to tunnel to.
+# $2 - 'kill' to kill said tunnel
+function loctun () {
+    if [ -z "$1" ] ; then
+	echo "loctun needs 1 argument, desthost."
+	return
+    fi
+    _desthost=$1
+    if [ "$2" == "kill" ] ; then
+        _pid=`lsof -t -i @localhost:9000 -sTCP:listen`
+        if [ -z "$_pid" ] ; then
+            echo "*** no local tunnel found for $_desthost"
+            return
+        fi
+        echo "*** killing $_pid for $_desthost"
+        kill $_pid
+        return
+    fi
+    _pid=`lsof -t -i @localhost:9000 -sTCP:listen`
+    if [ -n "$_pid" ] ; then
+        echo "*** local tunnel for $_desthost already running, $_pid"
+        return
+    fi
+    ssh -N -f -L localhost:9000:localhost:9000 -o ServerAliveInterval=30 pi@$1 &> /tmp/$_desthost_tun.out
+    _pid=`lsof -t -i @localhost:9000 -sTCP:listen`
+    if [ -z "$_pid" ] ; then
+        echo "*** could not start tunnel for $_desthost"
+        echo "*** see /tmp/${_desthost}_tun.out for details."
+        return
+    fi
+    echo "*** started $_pid for $_desthost"
 }
+
 
 function shtos () {
     echo "MM_ROOT:       $MM_ROOT"
